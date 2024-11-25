@@ -1,0 +1,321 @@
+/* Genel stiller */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('stars.gif'); /* Yıldız GIF'inin yolu */
+    background-repeat: repeat; /* GIF'in her iki yönde tekrarlanmasını sağlar */
+    color: #e7dfdd; /* Açık gri metin rengi */
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px; /* Header'ın yüksekliği GIF'e göre ayarlanır */
+    background-image: url('neonwallet-opt.gif'); /* GIF dosyası burada tanımlanır */
+    background-size: contain; /* GIF'in orantılı olarak küçültülmesini sağlar */
+    background-position: center; /* GIF'in ortalanmasını sağlar */
+    background-repeat: no-repeat; /* GIF'in tekrarlanmamasını sağlar */
+    background-color: rgba(72, 52, 112, 0.1); /* Koyu mor arka plan */
+    color: #fff; /* Header yazı rengi */
+    padding: 15px 0;
+    text-align: center;
+    font-size: 24px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+    z-index: 1000; /* Header'ın diğer elementlerin üstünde olması için */
+}
+
+main {
+    margin-top: 100px; /* Header alanı için boşluk bırakılır */
+    padding: 20px;
+    max-width: 900px; /* İçeriğin genişliği */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section {
+    margin-bottom: 15px; /* Bölümler arasındaki boşluk */
+    padding: 15px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.09); /* Şeffaf beyaz arka plan */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+}
+
+h3 {
+    color: #ff6600; /* Turuncu başlık rengi */
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: #4717f6; /* Mor buton arka planı */
+    color: #e7dfdd; /* Açık gri buton metni */
+    border: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Hafif gölge efekti */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Hover ve tıklama efektleri */
+}
+
+button:hover {
+    background-color: #ff6600; /* Turuncu hover efekti */
+    transform: scale(1.05); /* Hover ile hafif büyüme efekti */
+}
+
+button:active {
+    background-color: #cc5200; /* Daha koyu turuncu tıklama efekti */
+    transform: scale(1); /* Tıklamayla geri dönüş */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.05); /* Şeffaf beyaz arka plan */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Tablo için gölge efekti */
+    border-radius: 8px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    color: #fff; /* Metin rengi */
+    font-size: 16px;
+}
+
+table th {
+    background-color: rgba(72, 52, 112, 0.4); /* Koyu mor başlık transparent*/
+    text-transform: uppercase; /* Büyük harf başlık */
+}
+
+table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05); /* Alternatif satır arka planı */
+}
+
+table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Satır hover efekti */
+}
+
+.token-icon img {
+    width: 30px; /* İkon boyutu */
+    height: 30px;
+    border-radius: 50%; /* Yuvarlak ikonlar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Hafif gölge efekti */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.token-icon img:hover {
+    transform: scale(1.1); /* Hover ile büyüme efekti */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Hover ile daha yoğun gölge */
+}
+
+footer {
+    background-color: rgba(72, 52, 112, 0.1); /* Koyu mor arka plan */
+    color: white; /* Metin rengi */
+    text-align: center;
+    padding: 5px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#connect {
+    position: relative; /* Pseudo-element için */
+    display: inline-block;
+    width: 150px; /* Sabit genişlik */
+    height: 45px; /* Sabit yükseklik */
+    padding: 4px; /* İç dolgu kaldırıldı */
+}
+
+#connectWallet {
+    background-color: #000000; /* Mor buton arka planı */
+    color: #e7dfdd; /* Açık gri metin rengi */
+    border: none;
+    padding: 0; /* Padding sıfırlandı, sabit boyut için gerekirse kaldırılır */
+    width: 100%; /* #connect ile aynı genişlik */
+    height: 100%; /* #connect ile aynı yükseklik */
+    display: flex; /* İçeriği ortalamak için flex kullanıyoruz */
+    justify-content: center; /* Yatayda ortalama */
+    align-items: center; /* Dikeyde ortalama */
+    border-radius: 8px; /* Yuvarlatılmış kenarlar */
+    font-size: 16px; /* Yazı boyutu */
+    cursor: pointer;
+    position: relative; /* Pseudo-element için gerekli */
+    z-index: 1; /* Buton içeriğinin üstte görünmesini sağlar */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Hafif gölge efekti */
+    transition: background-color 0.8s ease, transform 0.2s ease; /* Hover ve tıklama efektleri */
+    overflow: hidden; /* Taşan içeriği gizler */
+    white-space: nowrap; /* Yazının taşmasını engeller */
+    text-overflow: ellipsis; /* Yazı taşarsa kesilir */
+}
+
+#connectWallet:hover {
+    background-color: #ff6600; /* Turuncu hover efekti */
+    transform: scale(0.8); /* Hover ile hafif büyüme efekti */
+}
+
+#connectWallet:active {
+    transform: scale(0.8); /* Tıklamayla geri dönüş */
+}
+
+#connect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 .5px .5px rgba(255, 255, 255, 0.2); /* Çizgi görünümü */
+    background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff6600,
+        #ff0,
+        #0f0,
+        #0ff,
+        #00f,
+        #f0f,
+        #ff0000
+    );
+    background-size: 500% 500%;
+    pointer-events: none;
+    animation: gradient-flow 15s linear infinite;
+}
+
+
+/* Renk Geçişi Animasyonu */
+@keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+#swapButton {
+    background-color: #4717f6; /* Mor buton arka planı */
+    color: #e7dfdd; /* Açık gri metin rengi */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative; /* Pseudo-element için gerekli */
+    z-index: 1; /* Buton içeriğinin üstte görünmesini sağlar */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Hafif gölge efekti */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Hover ve tıklama efekti */
+}
+
+#swapButton:hover {
+    background-color: #ff6600; /* Turuncu hover efekti */
+    transform: scale(1.05); /* Hover ile hafif büyüme efekti */
+}
+
+#swapButton::before {
+    content: "";
+    position: absolute;
+    top: -1px; /* Çizgiyi butona daha yakın yerleştirir */
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 8px; /* Buton kenarlarına uyumlu */
+    background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff6600,
+        #ff0,
+        #0f0,
+        #0ff,
+        #00f,
+        #f0f,
+        #ff0000
+    );
+    background-size: 450% 450%; /* Yumuşak geçiş */
+    z-index: -1; /* Pseudo-elementi butonun arkasına taşır */
+    pointer-events: none; /* Tıklamaları engellemez */
+    border: 0.5px solid transparent; /* Çizgi kalınlığı */
+    animation: gradient-flow 20s linear infinite; /* Renk geçişi animasyonu */
+}
+
+/* Renk Geçişi Animasyonu */
+@keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.modX {
+    display: inline-block;
+    background-color: #000000; /* Mor arka plan */
+    color: #e7dfdd; /* Açık gri metin rengi */
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    padding: 8px 16px; /* Buton boyutları */
+    border-radius: 8px; /* Yuvarlatılmış kenarlar */
+    font-size: 14px; /* Yazı boyutu */
+    font-weight: bold; /* Yazıyı kalın yap */
+    cursor: pointer;
+    position: relative; /* Pseudo-element için gerekli */
+    z-index: 1; /* İçeriğin üstte görünmesi için */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Hafif gölge efekti */
+    transition: background-color 0.3s ease, transform 1s ease; /* Hover ve tıklama efektleri */
+}
+
+.modX:hover {
+    background-color: #4717f6; /* Hover ile turuncu renk */
+    transform: scale(1.05); /* Hover ile büyüme efekti */
+}
+
+.modX::before {
+    content: "";
+    position: absolute;
+    top: -1px; /* Çizgiyi linke yakınlaştırır */
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 8px; /* Kenar yuvarlatmaları */
+    background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff6600,
+        #ff0,
+        #0f0,
+        #0ff,
+        #00f,
+        #f0f,
+        #ff0000
+    );
+    background-size: 650% 650%; /* Daha yumuşak renk geçişi */
+    z-index: -1; /* Çerçeveyi içeriğin altına taşır */
+    pointer-events: none; /* Tıklamaları engellemez */
+    border: 0.5px solid transparent; /* İnce bir çerçeve */
+    animation: gradient-flow 20s linear infinite; /* Renk geçişi animasyonu */
+}
+
+/* Renk Geçişi Animasyonu */
+@keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+

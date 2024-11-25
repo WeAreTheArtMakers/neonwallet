@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Neon Wallet - STREET Token Takas ve Yönetim Uygulaması">
+    <title>STREET MONEY</title>
+    <!-- Favicon -->
+    <link href="https://modfxmarket.com/street/img/street12.PNG" rel="icon">
+    <!-- Stil dosyaları -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="modART.css">
+    <!-- JavaScript kütüphaneleri -->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+    <script src="https://unpkg.com/web3modal@1.9.8/dist/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <style>
+        /* Dil butonları için stil */
+        .language-switcher {
+            position: absolute;
+            right: 20px; /* Sağ kenardan uzaklık */
+            display: inline-block;
+        }
+
+        .language-button {
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            padding: 3px;
+            border-radius: 66%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .language-button:hover {
+            background-color: #ff6600;
+            transform: scale(1.05);
+        }
+
+        .language-menu {
+            display: none;
+            position: absolute;
+            top: 100%; /* Düğmenin hemen altında açılması için */
+            right: 0; /* Menü sağa hizalı */
+            background-color: #000;
+            border: 1px solid #4717f6;
+            border-radius: 8px;
+            padding: 10px 0;
+            z-index: 10;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .language-menu button {
+            background-color: transparent;
+            color: #fff;
+            border: none;
+            text-align: left;
+            padding: 10px 20px;
+            width: 100%;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .language-menu button:hover {
+            background-color: #4717f6;
+        }
+
+        /* Menü aktif olduğunda görünür yap */
+        .language-switcher.active .language-menu {
+            display: block;
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Üst menü -->
+    <header>
+        <h2></h2>
+    </header>
+
+    <!-- Ana içerik -->
+    <main>
+        
+            <!-- Cüzdan Bağlantısı Bölümü -->
+        <section id="connect">
+            <button id="connectWallet">WEB 3</button>
+        </section>
+
+        <!-- Dil Seçici -->
+    <div class="language-switcher" id="languageSwitcher">
+        <button class="language-button">🌐</button>
+        <div class="language-menu">
+            <button onclick="switchLanguage('tr')">🇹🇷Türkçe</button>
+            <button onclick="switchLanguage('en')">🇬🇧English</button>
+            <button onclick="switchLanguage('de')">🇩🇪Deutsch</button>
+            <button onclick="switchLanguage('fr')">🇫🇷Français</button>
+            <button onclick="switchLanguage('zh')">🇨🇳中文</button>
+            <button onclick="switchLanguage('ru')">🇷🇺Русский</button>
+        </div>
+    </div>
+         
+        
+        
+        <!-- modX Bağlantısı Bölümü -->
+        <section id="downloadSection">
+            <h3 id="downloadTitle">Süper Sürpriz ! </h3>
+            <p id="downloadDescription">Cüzdanınızda 50 Milyon STREET MONEY varsa 
+                <a href="https://modfxmarket.com/modX" target="_blank" class="highlight-link">modX</a> 
+                macOS ve Windows indirme bağlantıları burada gözükecek.
+            </p>
+        </section>
+
+        <!-- Token Listeleme Bölümü -->
+        <section id="tokens">
+            <h3 id="balanceTitle">Sahip olduğun STREET Miktarı</h3>
+            <table id="tokenTable" class="table">
+                <thead>
+                    <tr>
+                        <th id="tokenColumn">Token</th>
+                        <th id="balanceColumn">Bakiye</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="token-icon">
+                            <img src="https://modfxmarket.com/street/img/street12.PNG" alt="Token Icon">
+                            STREET MONEY
+                        </td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Takas Bölümü -->
+        <section id="swap">
+            <h3 id="swapTitle">Takas Yap</h3>
+            <form id="swapForm">
+                <div class="form-group">
+                    <label id="fromTokenLabel" for="fromToken">Göndereceğiniz Token</label>
+                    <select id="fromToken" name="fromToken" class="form-control">
+                        <option value="BNB">BNB</option>
+                        <option value="MATIC">MATIC</option>
+                        <option value="STREET">STREET MONEY</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label id="toTokenLabel" for="toToken">Almak İstediğiniz Token</label>
+                    <select id="toToken" name="toToken" class="form-control">
+                        <option value="STREET">STREET MONEY</option>
+                        <option value="BNB">BNB</option>
+                        <option value="MATIC">MATIC</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label id="amountLabel" for="amount">Gönderilecek Token Miktarı</label>
+                    <input type="number" id="amount" name="amount" placeholder="0.3 BNB" step="any" min="0" class="form-control" required>
+                </div>
+
+                <button type="submit" id="swapButton">Takas Yap</button>
+            </form>
+        </section>
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Neon Wallet</p>
+    </footer>
+
+     <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+    <script src="https://unpkg.com/web3modal@1.9.8/dist/index.js"></script>
+    <!-- Include jQuery BEFORE toastr.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include toastr.js AFTER jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Your Custom Scripts -->
+    
+    <!-- JavaScript dosyası -->
+    <script src="mods.js"></script>
+    
+     <!-- JavaScript ile Dil Değiştirme -->
+    <script>
+        const translations = {
+    en: {
+        connectWallet: "Connect Wallet",
+        downloadTitle: "Download the App",
+        downloadDescription: "If you have 50 Million STREET MONEY in your wallet, the download links for macOS and Windows will appear here.",
+        balanceTitle: "Your STREET Balance",
+        tokenColumn: "Token",
+        balanceColumn: "Balance",
+        swapTitle: "Swap Tokens",
+        fromTokenLabel: "Token to Send:",
+        toTokenLabel: "Token to Receive:",
+        amountLabel: "Amount:",
+        swapButton: "Swap",
+    },
+    tr: {
+        connectWallet: "Cüzdanı Bağla",
+        downloadTitle: "Süper Sürpriz!",
+        downloadDescription: "Cüzdanınızda 50 Milyon STREET MONEY varsa macOS ve Windows indirme bağlantıları burada gözükecek.",
+        balanceTitle: "Sahip olduğun STREET Miktarı",
+        tokenColumn: "Token",
+        balanceColumn: "Bakiye",
+        swapTitle: "Takas Yap",
+        fromTokenLabel: "Göndereceğiniz Token:",
+        toTokenLabel: "Almak İstediğiniz Token:",
+        amountLabel: "Miktar:",
+        swapButton: "Takas Yap",
+    },
+    de: {
+        connectWallet: "Wallet verbinden",
+        downloadTitle: "Laden Sie die App herunter",
+        downloadDescription: "Wenn Sie 50 Millionen STREET MONEY in Ihrer Wallet haben, werden hier die Download-Links für macOS und Windows angezeigt.",
+        balanceTitle: "Ihr STREET-Guthaben",
+        tokenColumn: "Token",
+        balanceColumn: "Guthaben",
+        swapTitle: "Token tauschen",
+        fromTokenLabel: "Zu sendendes Token:",
+        toTokenLabel: "Zu erhaltendes Token:",
+        amountLabel: "Betrag:",
+        swapButton: "Tauschen",
+    },
+    fr: {
+        connectWallet: "Portefeuille",
+        downloadTitle: "Téléchargez l'application",
+        downloadDescription: "Si vous avez 50 millions de STREET MONEY dans votre portefeuille, les liens de téléchargement pour macOS et Windows apparaîtront ici.",
+        balanceTitle: "Votre solde STREET",
+        tokenColumn: "Jeton",
+        balanceColumn: "Solde",
+        swapTitle: "Échanger des jetons",
+        fromTokenLabel: "Jeton à envoyer :",
+        toTokenLabel: "Jeton à recevoir :",
+        amountLabel: "Montant :",
+        swapButton: "Échanger",
+    },
+    zh: {
+        connectWallet: "连接钱包",
+        downloadTitle: "下载应用程序",
+        downloadDescription: "如果您的钱包中有5000万 STREET MONEY，这里会显示 macOS 和 Windows 的下载链接。",
+        balanceTitle: "您的 STREET 余额",
+        tokenColumn: "代币",
+        balanceColumn: "余额",
+        swapTitle: "代币兑换",
+        fromTokenLabel: "发送代币：",
+        toTokenLabel: "接收代币：",
+        amountLabel: "金额：",
+        swapButton: "兑换",
+    },
+    ru: {
+        connectWallet: "кошелек",
+        downloadTitle: "Скачать приложение",
+        downloadDescription: "Если у вас на кошельке есть 50 миллионов STREET MONEY, здесь появятся ссылки для загрузки для macOS и Windows.",
+        balanceTitle: "Ваш баланс STREET",
+        tokenColumn: "Токен",
+        balanceColumn: "Баланс",
+        swapTitle: "Обмен токенов",
+        fromTokenLabel: "Токен для отправки:",
+        toTokenLabel: "Токен для получения:",
+        amountLabel: "Сумма:",
+        swapButton: "Обменять",
+    },
+};
+
+
+        function switchLanguage(language) {
+            document.getElementById("connectWallet").innerText = translations[language].connectWallet;
+            document.getElementById("downloadTitle").innerText = translations[language].downloadTitle;
+            document.getElementById("downloadDescription").innerText = translations[language].downloadDescription;
+            document.getElementById("balanceTitle").innerText = translations[language].balanceTitle;
+            document.getElementById("tokenColumn").innerText = translations[language].tokenColumn;
+            document.getElementById("balanceColumn").innerText = translations[language].balanceColumn;
+            document.getElementById("swapTitle").innerText = translations[language].swapTitle;
+            document.getElementById("fromTokenLabel").innerText = translations[language].fromTokenLabel;
+            document.getElementById("toTokenLabel").innerText = translations[language].toTokenLabel;
+            document.getElementById("amountLabel").innerText = translations[language].amountLabel;
+            document.getElementById("swapButton").innerText = translations[language].swapButton;
+        }
+    </script>
+    
+    
+    <script>
+        const languageSwitcher = document.getElementById('languageSwitcher');
+        const languageButton = languageSwitcher.querySelector('.language-button');
+        const languageMenu = languageSwitcher.querySelector('.language-menu');
+
+        // Menü açma ve kapama
+        languageButton.addEventListener('click', () => {
+            languageSwitcher.classList.toggle('active');
+        });
+
+        // Menü dışına tıklanınca kapat
+        document.addEventListener('click', (event) => {
+            if (!languageSwitcher.contains(event.target)) {
+                languageSwitcher.classList.remove('active');
+            }
+        });
+    </script>
+    
+    
+</body>
+</html>
