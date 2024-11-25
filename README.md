@@ -15,6 +15,43 @@
 
 ---
 
+## 🎯 Kullanım Talimatları
+
+### 1. Cüzdan Bağlantısı
+- Sayfada bulunan **"WEB 3"** butonuna tıklayın.
+- MetaMask veya WalletConnect ile cüzdanınızı bağlayın.
+
+---
+
+### 2. STREET Token Bakiyenizi Görüntüleyin
+- Cüzdanınızı bağladıktan sonra, STREET bakiyeniz otomatik olarak listelenecektir.
+
+---
+
+### 3. Takas İşlemleri
+- Göndermek istediğiniz token ve almak istediğiniz tokenı seçin.
+- Token miktarını girerek **Takas Yap** butonuna tıklayın.
+
+---
+
+### 4. modX Uygulamasını İndirin
+- Cüzdanınızda **50 milyon STREET bakiyesi** varsa, macOS ve Windows için indirilebilir bağlantılara erişebilirsiniz.
+
+---
+
+## 🔧 Teknik Detaylar
+
+### Minimum STREET Bakiyesi
+- İndirilebilir içeriğe erişim için cüzdanınızda **minimum 50 milyon STREET** bulunmalıdır.
+
+---
+
+### Desteklenen Tokenlar ve Ağlar
+- **BNB Chain**: STREET, WBNB
+- **Polygon (Matic)**: STREET, WMATIC
+
+---
+
 ## 📂 Proje Yapısı
 
 ```plaintext
@@ -25,25 +62,40 @@ NeonWallet/
 ├── mods.js        # Ana JavaScript dosyası
 ├── stars.gif      # Arka plan GIF'i
 └── neonwallet.gif # Logo GIF'i
-
-## 🎯 Kullanım Talimatları
-
-### Cüzdan Bağlantısı:
-1. Sayfada bulunan **"WEB 3"** butonuna tıklayın.
-2. MetaMask veya WalletConnect ile cüzdanınızı bağlayın.
+```
 
 ---
 
-### STREET Token Bakiyenizi Görüntüleyin:
-- Cüzdanınızı bağladıktan sonra, STREET bakiyeniz otomatik olarak listelenecektir.
+## 🤝 Katkıda Bulunma
+
+Katkıda bulunmak için şu adımları takip edebilirsiniz:
+
+1. Depoyu forklayın.
+2. Yeni bir dal oluşturun:
+   ```bash
+   git checkout -b yeni-ozellik
+   ```
+3. Yaptığınız değişiklikleri commit edin:
+   ```bash
+   git commit -m "Yeni özellik ekledim"
+   ```
+4. Dalınızı gönderin:
+   ```bash
+   git push origin yeni-ozellik
+   ```
+5. Bir **Pull Request** açın.
 
 ---
 
-### Takas İşlemleri:
-1. Göndermek istediğiniz token ve almak istediğiniz tokenı seçin.
-2. Token miktarını girerek **Takas Yap** butonuna tıklayın.
+## 📧 İletişim
+
+Herhangi bir sorunuz veya öneriniz varsa bizimle iletişime geçebilirsiniz:
+
+- **E-posta**: [admin@wearetheartmakers.com](mailto:admin@wearetheartmakers.com)
+- **Web**: [Neon Wallet](https://modfxmarket.com/neonwallet)
 
 ---
 
-### modX Uygulamasını İndirin:
-- Cüzdanınızda **50 milyon STREET bakiyesi** varsa, macOS ve Windows için indirilebilir bağlantılara erişebilirsiniz.
+## 📜 Lisans
+
+Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
